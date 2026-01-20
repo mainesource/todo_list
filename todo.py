@@ -2,24 +2,25 @@ import time
 
 ''' This is my Todo List app. you can add, delete, view tasks '''
 
-task_list = {1:'Take out garbage',
-             2:'Walk the Dog' }
+# Initialize Task list
+task_list = {}
 
-
+# Print Banner
 def banner():
     print('#'*31)
     print('#'*9,' TODO LIST ','#'*9)
     print('#'*31)
     return
 
+# Print menu options
 def menu():
     print("1: View Tasks")
     print("2: Add Tasks")
     print("3: Delete Tasks")
-    print('q: Quit')
-    print('\n\n')
+    print('q: Quit')    
     return
 
+# View Tasks
 def view_tasks(tasks):
     print('#'*31)
     print('#'*9,' View ','#'*9)
@@ -33,10 +34,13 @@ def view_tasks(tasks):
         print('\n\n')
     time.sleep(2)
 
+# Get Menu choice
 def get_menu_choice():
-    choice = input("1,2,3 or q: ")    
+    choice = input("1,2,3 or q: ")
+    print('\n\n')   
     return choice    
 
+# Add a Task
 def add_task(tasks):    
     print('#'*31)
     print('#'*9,' ADD ','#'*9)
@@ -49,6 +53,7 @@ def add_task(tasks):
     tasks[new_task_id] = new_task      
     return print('Task added!\n\n')
 
+# Delete a task
 def delete_task(tasks):
     print('#'*31)
     print('#'*9,' DELETE ','#'*9)
@@ -58,9 +63,12 @@ def delete_task(tasks):
         for k,v in tasks.items():
             print(f'{k}: {v}')
         print('#'*31)
-        task_num = int(input("Which task to delete: "))
-        del tasks[task_num]
-        print('Task Deleted')
+        try:
+            task_num = int(input("Which task to delete: "))
+            del tasks[task_num]
+            print('Task Deleted')
+        except:
+            print('No Task found')        
         print('\n\n')
     return None
 
